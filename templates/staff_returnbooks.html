@@ -12,11 +12,11 @@
         <form action="/staff/borrower/return" method="POST">
         <fieldset class = "options">
             <label for="title">Card No:</label>
-            <input type="text" id="CardNo" name="CardNo" value="{{dbresult[0][2]}}" />
+            <input type="text" id="CardNo" name="CardNo" required="required" placeholder="00" value="{{dbresult[0][2]}}" />
             <label for="title">Book Id:</label>
-            <input type="text" id="BookId" name="BookId" value="{{dbresult[0][0]}}" />
+            <input type="text" id="BookId" name="BookId" required="required" placeholder="Book Id" value="{{dbresult[0][0]}}" />
             <label for="title">Branch Id:</label>
-            <input type="text" id="BranchId" name="BranchId" value="{{dbresult[0][1]}}" />
+            <input type="text" id="BranchId" name="BranchId" required="required" placeholder="Branch Id" value="{{dbresult[0][1]}}" />
             <input type="submit" value="Return Book!">
         </fieldset>
         </form>

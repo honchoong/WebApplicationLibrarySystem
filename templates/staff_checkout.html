@@ -8,7 +8,7 @@
     </head>
     <body>
         <h1>Book Checkout</h1>
-        <!-- a form to take in information for checking out a book -->
+        <!-- a form to take in information for checking out a book, book title and branch name is disabled to prevent the user to change the information -->
         <form action="/staff/checkout" method="POST">
             <input type="hidden" id="book_id" name="book_id" value="{{select_title[1]}}" />
             <label for="title">Book Title:</label>
@@ -17,7 +17,7 @@
             <label for="branch_name">Branch Name:</label>
             <input type="text" id="branch_name" name="branch_name" value="{{select_branch[0]}}" disabled/>
             <label for="card_no">Card No:</label>
-            <input type="text" id="card_no" name="card_no" />
+            <input type="text" id="card_no" name="card_no" required="required" placeholder="00" />
             <input type="submit" value="submit">
         </form>
         <a href='/staff/book?bookid={{select_title[1]}}' role="button" class="btn btn-secondary">Back</a>

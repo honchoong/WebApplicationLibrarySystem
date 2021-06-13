@@ -101,7 +101,7 @@ def borrower():
         search_by = request.args.get("searchby")
         borrower = request.args.get("value")
         if search_by == '' or borrower == '':
-            return render_template("staf_borrower.html")
+            return render_template("staff_borrower.html")
         # fetch from database based on borrower's name or card number and display borrower's details
         # books that have not been returned (value 0) can be routed to return book page
         else:
@@ -181,7 +181,7 @@ def publicbook():
     book_id = request.args.get("bookid")
     if book_id == '':
         return redirect("/public")
-    # fetch book details from daabase and show book information with branchname, duedate and availability
+    # fetch book details from database and show book information with branchname, duedate and availability
     else: 
         cur = getCursor()
         cur.execute("""SELECT Book.BookId, Book.Title, Book_Copies.BranchId, Library_Branch.BranchName, 
