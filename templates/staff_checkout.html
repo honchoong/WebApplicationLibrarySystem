@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Library</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+        <link href="../static/css/main.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Book Checkout</h1>
+        <!-- a form to take in information for checking out a book -->
+        <form action="/staff/checkout" method="POST">
+            <input type="hidden" id="book_id" name="book_id" value="{{select_title[1]}}" />
+            <label for="title">Book Title:</label>
+            <input type="text" id="title" name="title" value="{{select_title[0]}}" disabled/>
+            <input type="hidden" id="branch_id" name="branch_id" value="{{select_branch[1]}}" />
+            <label for="branch_name">Branch Name:</label>
+            <input type="text" id="branch_name" name="branch_name" value="{{select_branch[0]}}" disabled/>
+            <label for="card_no">Card No:</label>
+            <input type="text" id="card_no" name="card_no" />
+            <input type="submit" value="submit">
+        </form>
+        <a href='/staff/book?bookid={{select_title[1]}}' role="button" class="btn btn-secondary">Back</a>
+    </body>
+</html>

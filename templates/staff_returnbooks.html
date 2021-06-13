@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Library</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+        <link href="../static/css/main.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Take in card no or borrowers name and search in database, then staff are able to return books -->
+        <h1>Borrower Details & Returns</h1>
+        <form action="/staff/borrower/return" method="POST">
+        <fieldset class = "options">
+            <label for="title">Card No:</label>
+            <input type="text" id="CardNo" name="CardNo" value="{{dbresult[0][2]}}" />
+            <label for="title">Book Id:</label>
+            <input type="text" id="BookId" name="BookId" value="{{dbresult[0][0]}}" />
+            <label for="title">Branch Id:</label>
+            <input type="text" id="BranchId" name="BranchId" value="{{dbresult[0][1]}}" />
+            <input type="submit" value="Return Book!">
+        </fieldset>
+        </form>
+        <a href='/staff' role="button" class="btn btn-secondary">Back</a>
+    </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Library</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+        <link href="../static/css/main.css" rel="stylesheet" />
+        <script>
+          //filter function for books
+            function myFunction() {
+              // Declare variables
+              var input, filter, table, tr, td, i, txtValue;
+              input = document.getElementById("myInput");
+              filter = input.value.toUpperCase();
+              table = document.getElementById("myTable");
+              tr = table.getElementsByTagName("tr");
+            
+              // Loop through all table rows, and hide those who don't match the search query
+              for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                  txtValue = td.textContent || td.innerText;
+                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                  } else {
+                    tr[i].style.display = "none";
+                  }
+                }
+              }
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Books</h1>
+        <!-- filter function for book name -->
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+        <!-- table of books -->
+        <table id="myTable" class="table table-hover">
+            <thead>
+            <tr>
+            <th>{{dbcols[1]}}</th><th>{{dbcols[2]}}</th>
+            </tr>
+            </thead>
+        {# this is a comment: TO BE ADDED LATER #}
+        <tbody>
+        {% for result in dbresult %}
+        <tr>
+          <!-- links for book names -->
+            <td><a href="/public/book?bookid={{result[0]}}">{{result[1]}}</a></td><td>{{result[2]}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+        <!-- return to previous page -->
+        <a href='/' role="button" class="btn btn-secondary">Back</a>
+    </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Library</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+        <link href="../static/css/main.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Borrower Details & Returns</h1>
+        <!-- A form - select card no or borrower's name and type in value into text box for the search -->
+        <form action="/staff/borrower" method="GET">
+            <label class="radio"><input type="radio" id="card_no" name="searchby" value="CardNo" /></label>
+            <label for="card_no">Card No</label>
+            <label class="radio"><input type="radio" id="borrower_name" name="searchby" value="name" /></label>
+            <label for="borrower_name">Borrower's Name</label>
+            <label for="value"></label>
+            <input type="text" id="value" name="value" />
+            <input type="submit" value="search">
+        </form>
+        <!-- displays result of search function, link for further tables are only available for books that have not been returned for validation -->
+        {% if dbresult %}
+            <h3>{{dbcols[0]}}:{{dbresult[0][0]}} <br>
+                {{dbcols[1]}}:{{dbresult[0][1]}}</h3>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                <th>{{dbcols[3]}}</th>
+                <th>{{dbcols[5]}}</th>
+                <th>{{dbcols[6]}}</th>
+                <th>{{dbcols[7]}}</th>
+                <th>{{dbcols[8]}}</th>
+                </tr>
+                </thead>
+            {# this is a comment: TO BE ADDED LATER #}
+            <tbody>
+            {% for result in dbresult %}
+            <tr>
+                {% if result[8] == 0 %}
+                <td><a href='/staff/borrower/return?CardNo={{result[1]}}&BookId={{result[2]}}&BranchId={{result[4]}}'>{{result[3]}}</a></td>
+                {% else %}
+                <td>{{result[3]}}</td>
+                {% endif %}
+                <td>{{result[5]}}</td>
+                <td>{{result[6]}}</td>
+                <td>{{result[7]}}</td>
+                <td>{{result[8]}}</td>
+
+            </tr>
+        {% endfor %}
+            </tbody>
+            </table>
+        {% endif %}
+        <a href='/staff' role="button" class="btn btn-secondary">Back</a>
+    </body>
+</html>
